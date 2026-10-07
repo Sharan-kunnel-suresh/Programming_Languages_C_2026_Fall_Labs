@@ -16,14 +16,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-// TODO: Define struct Student with fields name (char[50]), id (int), grade
-// (float)
-//       (same definition as in Task 2)
 struct Student {
   char name[50];
   int id;
   float grade;
-} 
+};
+
 int main(void) {
   int n;
   struct Student* students = NULL;
@@ -35,29 +33,30 @@ int main(void) {
   }
 
   students = malloc(n * sizeof(struct Student));
+
   if (students == NULL) {
-    printf("memory allocation failed !\n");
+    printf("Memory allocation failed.\n");
     return 1;
   }
+
   for (int i = 0; i < n; i++) {
-    printf("Enter data for student %d", i + 1);
+    printf("Enter data for students %d :", i + 1);
     if (scanf("%49s %d %f", students[i].name, &students[i].id,
-              &students[i].grade) != 3) {
-      printf("Invalid input.\n");
-      free(students);
-      return 1;
-    }
-  }
-  printf("\n");
-  printf("%-6s %-11s %s\n", "ID", "Name", "Grade");
-  for (int i = 0; i < n i++) {
-    printf("%-6d %-11s %.1f\n",
-        students[i].id,
-        students[i].name,
-        students[i].grade);
+              &students[i].grade) != 3);
+    printf("Invalide input .\n");
+    free(students);
+    return 1;
   }
 
-  free(students);
+  printf("\n");
+  printf("%-6s %-11s %s\n", "ID", "Name", "Grade");
+
+  for (int i = 0; i < n; i++) {
+    printf("%-6d %-11s %.1f\n", students[i].id, students[i].name,
+           students[i].grade);
+  }
+
+  free(students);  // remove this line once you use students
 
   return 0;
 }
